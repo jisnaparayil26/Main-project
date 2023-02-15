@@ -1,0 +1,57 @@
+{% include "adminheader.html" %}
+<div id="page-wrapper" >
+  <div id="page-inner">
+      <div class="row">
+          <div class="col-md-12">
+          
+          </div>
+      </div>              
+       <!-- /. ROW  -->
+        <hr />
+     
+
+
+    <center>
+        {% if q %}
+        <h1>Bookings</h1>
+    <table class="table" style="width: 800px;" border="4">
+        <tr>
+            <th>SL.NO</th>
+            <th>Customer</th>
+            <th>Seller</th>
+            <th>Total</th>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Status</th>
+        </tr>
+            {% for row in q %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{row.customer.fname}} {{row.customer.lname}}</td>
+            <td>{{row.seller.fname}} {{row.seller.lname}}</td>
+            <td>{{row.total}}</td>
+            <td>{{row.date}}</td>
+            <td><a class="btn btn-primary" href="/admin_view_cart_product/{{row.id}}">Product Details</a></td>
+            <td>{{row.status}}</td>
+            {% if row.status == "Paid" %}
+            <td><a class="btn btn-danger" href="/admin_view_payments/{{row.id}}">Payments</a></td> 
+   {% endif %}
+           
+        </tr>
+            {% endfor %}
+    </table>
+    {% else %}
+    <br><br>
+    <h2>NO DATA</h2>
+    
+    <br><br><br><br>
+    {% endif %}
+</center>
+       <!-- /. ROW  -->
+       <hr />                
+    
+     
+       <!-- /. ROW  -->           
+</div>
+   <!-- /. PAGE INNER  -->
+{% include 'admin_footer.html'  %} 

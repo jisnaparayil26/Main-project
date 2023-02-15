@@ -1,0 +1,67 @@
+{% include "customer_header.html" %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height:400px">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);" style="height:400px">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown"><span>EatNow</span> Snacks</h2>
+                {% comment %} <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+    <center>
+        {% if q %}
+        <h1></h1>
+    <table class="table" style="width: 1000px;">
+        <tr>
+            <th>SL.NO</th>
+            <th>Seller</th>
+            <th>Email</th>
+            <th>Total</th>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Status</th>
+        </tr>
+            {% for row in q %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{row.seller.fname}} {{row.seller.lname}}</td>
+            <td>{{row.seller.email}}</td>
+            <td>{{row.total}}</td>
+            <td>{{row.date}}</td>
+            <td><a class="btn btn-primary" href="/customer_view_cart_history_product/{{row.id}}">Product Details</a></td>
+            {% if row.status == "Paid" %}
+            <td><a class="btn btn-info" href="/customer_view_payment_details/{{row.id}}">View Payments</a></td>
+
+            <td><a class="btn btn-danger" href="/generate_payment_invoice/{{row.id}}">Generate Invoice</a></td>
+   {% endif %}
+           
+        </tr>
+            {% endfor %}
+    </table>
+    {% else %}
+    <br><br>
+    <h2>NO DATA</h2>
+    <br><br><br><br>
+    {% endif %}
+</center>
+{% include "footer.html" %}

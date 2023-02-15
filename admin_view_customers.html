@@ -1,0 +1,59 @@
+{% include "adminheader.html" %}
+<div id="page-wrapper" >
+  <div id="page-inner">
+      <div class="row">
+          <div class="col-md-12">
+       
+          </div>
+      </div>              
+       <!-- /. ROW  -->
+        <hr />
+     
+
+
+    <center>
+        <h1>Customers</h1>
+    <table class="table" style="width: 800px;" border="4">
+        <tr>
+            <th>SL.NO</th>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+            {% for row in cc %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{row.fname}} {{row.lname}}</td>
+            <td>{{row.place}}</td>
+            <td>{{row.phone}}</td>
+            <td>{{row.email}}</td>
+
+            {% if row.login.usertype == "customer" %}
+            <td><a class="btn btn-warning" href="/admin_view_bookings/{{row.id}}">Bookings</a></td>
+            {% endif %}
+            {% if row.login.usertype == "customer" %}
+            <td>
+                <a class="btn btn-danger" href="/admin_block_customers/{{row.login_id}}">BLOCK</a>
+            </td>
+            {% elif row.login.usertype == "block" %}
+            <td>
+                <a class="btn btn-danger" href="/admin_unblock_customers/{{row.login_id}}">UNBLOCK</a>
+            </td>
+           
+            {% endif %}
+
+           
+           
+        </tr>
+            {% endfor %}
+    </table>
+</center>
+       <!-- /. ROW  -->
+       <hr />                
+    
+     
+       <!-- /. ROW  -->           
+</div>
+   <!-- /. PAGE INNER  -->
+{% include 'admin_footer.html'  %} 

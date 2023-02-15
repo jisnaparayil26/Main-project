@@ -1,0 +1,90 @@
+{% include 'customer_header.html'  %} 
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);">
+            <div class="carousel-container">
+              <div class="carousel-content">
+             
+              
+<form method="post">
+    {% csrf_token %}
+    <center>
+
+        {% if up %}
+        <h1>Edit Profile</h1>
+        <table class="table" style="width:500px;color:white">
+            <tr>
+                <th>First Name</th>
+                <td><input type="text" value={{up.fname}} name="fn" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td><input type="text" value={{up.lname}} name="ln" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td><input type="text" value={{up.phone}} name="ph" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="email" value={{up.email}} name="em" class="form-control" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="submit" value="UPDATE" class="btn btn-danger"></td>
+            </tr>
+        </table>
+
+        {% else %}
+
+        <h2 style="color: white">My Profile</h2>
+    
+        <table class="table" border="4" style="width:500px;color:white">
+            {% for i in q1 %}
+            <tr>
+                <th>First Name :</th>
+                <td>{{i.fname}}</td>
+            </tr>
+            <tr>
+                <th>Last Name :</th>
+                <td>{{i.lname}}</td>
+            </tr>
+            <tr>
+                <th>Place :</th>
+                <td>{{i.place}}</td>
+            </tr>
+            <tr>
+                <th>Phone :</th>
+                <td>{{i.phone}}</td>
+            </tr>
+            <tr>
+                <th>Email :</th>
+                <td>{{i.email}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><a class="btn btn-info" href="/customer_edit_profile/{{i.id}}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+       {% endif %}
+    </center>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+</div>
+</div>
+</section><!-- End Hero -->
+{% include 'footer.html'  %} 

@@ -1,0 +1,147 @@
+{% include "seller_header.html" %}
+
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+           
+            </div>
+        </div>              
+         <!-- /. ROW  -->
+          <hr />
+             
+     <center>      
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if up %}
+      
+        <h1>Update Product</h1>
+        <table class="table" style="color: black;width: 500px;">
+            <tr>
+                <th>Category</th>
+                <td>
+                    <select name="cat" required class="form-control">
+                      <option value="{{up.id}}">{{up.category.category}}</option>
+                        {% for i in q %}
+                        <option value="{{i.id}}">{{i.category}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+           </tr>                                                                                                                                                                                                                                                                                                             
+            <tr>
+                <th>Product</th>
+                <td><input type="text" class="form-control" required value="{{up.product_name}}" name="pro"></td>
+            </tr>
+            <tr>
+                <th>Rate</th>
+                <td><input type="text" class="form-control" required value="{{up.rate}}" name="rate"></td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td><input type="text" class="form-control" required value="{{up.quantity}}" name="qu"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="text" class="form-control" required name="des"></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><input class="btn btn-success" type="submit" name="sub" value="UPDATE"></td>
+            </tr>
+        </table>
+
+
+    {% else %}
+
+    
+    <h1>Add Product</h1>
+    <table class="table" style="color: black;width: 500px;">
+        <tr>
+            <th>Category</th>
+            <td>
+                <select name="cat" required class="form-control">
+                  <option>--select--</option>
+                    {% for i in q %}
+                    <option value="{{i.id}}">{{i.category}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+       </tr>
+        <tr>
+            <th>Product</th>
+            <td><input type="text" class="form-control" required name="pro"></td>
+        </tr>
+        <tr>
+            <th>Rate</th>
+            <td><input type="text" class="form-control" required name="rate"></td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td><input type="text" class="form-control" required name="qu"></td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td><input type="file" class="form-control" required name="img"></td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td><input type="text" class="form-control" required name="des"></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" class="btn btn-info" name="sub" value="ADD"></td>
+        </tr>
+    </table>
+
+
+
+    <h1>Product</h1>
+    <table class="table" style="color: black;width: 700px;">
+        <tr>
+            <th>SL.No</th>
+            <th>Product</th>
+            <th>Rate</th>
+            <th>Quantity</th>
+            <th>Image</th>
+            <th>Description</th>
+        </tr>
+        {% for i in pr %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.product_name}}</td>
+            <td>{{i.rate}}</td>
+            <td>{{i.quantity}}</td>
+            <td><img src="/static/uploads/{{i.image}}" height="100" weight="100"></td>
+            <td><textarea name="" id="" cols="30" rows="10">{{i.p_description}}</textarea></td>
+            {% comment %} <td>
+                <a class="btn btn-info" href="/seller_delete_product/{{i.id}}">Delete</a>
+            </td> {% endcomment %}
+            <td>
+                <a class="btn btn-success" href="/seller_update_product/{{i.id}}">Update</a>
+            </td>
+
+            {% if i.pstatus == "active" %}
+            <td>
+                <a class="btn btn-warning" href="/seller_product_inactive/{{i.id}}">INACTIVE</a>
+            </td>
+            {% elif i.pstatus == "inactive" %}
+            <td>
+                <a class="btn btn-primary" href="/seller_product_active/{{i.id}}">ACTIVE</a>
+            </td>
+            {% else %}
+            <td>{{row.pstatus}}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% endif %}
+</form>
+</center>
+
+  <!-- /. ROW  -->
+  <hr />                
+    
+     
+  <!-- /. ROW  -->           
+</div>
+<!-- /. PAGE INNER  -->
+{% include "admin_footer.html" %}

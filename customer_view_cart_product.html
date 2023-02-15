@@ -1,0 +1,278 @@
+{% include "customer_header.html" %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height:150px">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);" style="height:150px">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown"><span>Delicious</span> Snacks</h2>
+                {% comment %} <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+
+  <table class="table" style="width: 1000px;">
+    <tr>
+        <th>SL.NO</th>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Rate</th>
+        <th>Total</th>
+    </tr>
+        {% for i in q %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td><img src="/static/uploads/{{i.product.image}}" height="200" width="200" alt="" /></td>
+        <td>{{i.product.product_name}}</td>
+        <td>{{i.qty}}</td>
+        <td>{{i.product.rate}}</td>
+        <td>{{i.amont}}</td>
+        <td><a class="btn btn-danger" href="/customer_remove_cart_product/{{i.id}}/{{i.order_master.id}}">REMOVE</a></td>
+    </tr>
+        {% endfor %}
+    <tr>
+      <td colspan="6" align="center">
+      <h1>  Total : {{omtotal}}
+   
+   <a class="btn btn-danger" href="/customer_make_payment/{{oid}}/{{omtotal}}" >PLACE ORDER</a></h2></span></center>
+ 
+      </h1> </td>
+    </tr>
+</table>
+
+
+
+
+
+  {% comment %} <div class="shopping-cart">
+    <!-- Title -->
+    <div class="title">
+      Shopping Bag
+    </div>
+   
+    <!-- Product #1 -->
+    {% for i in q %}
+    <div class="item">
+      <div class="buttons">
+        <span class="delete-btn"></span>
+        <span class="like-btn"></span>
+      </div>
+   
+      <div class="image">
+        <img src="/static/uploads/{{i.product.image}}" height="200" width="200" alt="" />
+      </div>
+   
+      <div class="description">
+        <h2 style="color: black;">{{i.product.product_name}}</h2>
+      </div>
+   
+      <div class="quantity">
+        <span>{{i.qty}}</span>
+        <input type="text" readonly name="name" value="*">
+        <span>{{i.product.rate}}</span>
+        <input type="text" readonly name="name" value="=">
+        <div class="total-price"><h6>{{i.amont}}</h6></div>
+      </div>
+    </div>
+   {% endfor %} {% endcomment %}
+   {% comment %} <center><span><h2>Total : {{omtotal}}
+    {% if st == "Accepted" %}
+   <a class="btn btn-danger" href="/customer_make_payment/{{oid}}/{{omtotal}}" >PLACE ORDER</a></h2></span></center>
+   {% endif %} {% endcomment %}
+  {% comment %} </div> {% endcomment %}
+
+
+  <style>
+    * {
+        box-sizing: border-box;
+      }
+       
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background-color: #fbfdfa;
+        font-family: 'Roboto', sans-serif;
+      }
+      .shopping-cart {
+        width: 800px;
+        height: auto;
+        margin: 80px auto;
+        background: #FFFFFF;
+        box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+        border-radius: 6px;
+       
+        display: flex;
+        flex-direction: column;
+      }
+      .title {
+        height: 90px;
+        border-bottom: 1px solid #E1E8EE;
+        padding: 20px 30px;
+        color: #5E6977;
+        font-size: 18px;
+        font-weight: 400;
+      }
+       
+      .item {
+        padding: 20px 30px;
+        height: 250px;
+        display: flex;
+      }
+       
+      .item:nth-child(3) {
+        border-top:  1px solid #E1E8EE;
+        border-bottom:  1px solid #E1E8EE;
+      }
+      .buttons {
+        position: relative;
+        padding-top: 30px;
+        margin-right: 60px;
+      }
+      .delete-btn,
+      .like-btn {
+        display: inline-block;
+        Cursor: pointer;
+      }
+      .delete-btn {
+        width: 18px;
+        height: 17px;
+        background: url(&amp;quot;delete-icn.svg&amp;quot;) no-repeat center;
+      }
+       
+      .like-btn {
+        position: absolute;
+        top: 9px;
+        left: 15px;
+        background: url('twitter-heart.png');
+        width: 60px;
+        height: 60px;
+        background-size: 2900%;
+        background-repeat: no-repeat;
+      }
+      .is-active {
+        animation-name: animate;
+        animation-duration: .8s;
+        animation-iteration-count: 1;
+        animation-timing-function: steps(28);
+        animation-fill-mode: forwards;
+      }
+       
+      @keyframes animate {
+        0%   { background-position: left;  }
+        50%  { background-position: right; }
+        100% { background-position: right; }
+      }
+      .image {
+        margin-right: 50px;
+      }
+       
+      .description {
+        padding-top: 10px;
+        margin-right: 60px;
+        width: 115px;
+      }
+       
+      .description span {
+        display: block;
+        font-size: 14px;
+        color: #43484D;
+        font-weight: 400;
+      }
+       
+      .description span:first-child {
+        margin-bottom: 5px;
+      }
+      .description span:last-child {
+        font-weight: 300;
+        margin-top: 8px;
+        color: #86939E;
+      }
+      .quantity {
+  padding-top: 20px;
+  margin-right: 60px;
+}
+.quantity input {
+  -webkit-appearance: none;
+  border: none;
+  text-align: center;
+  width: 32px;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+ 
+.button[class*=btn] {
+  width: 30px;
+  height: 30px;
+  background-color: #E1E8EE;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.minus-btn img {
+  margin-bottom: 3px;
+}
+.plus-btn img {
+  margin-top: 2px;
+}
+ 
+button:focus,
+input:focus {
+  outline:0;
+}
+.total-price {
+  width: 83px;
+  padding-top: 27px;
+  text-align: center;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+@media (max-width: 800px) {
+  .shopping-cart {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  .item {
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .image img {
+    width: 50%;
+  }
+  .image,
+  .quantity,
+  .description {
+    width: 100%;
+    text-align: center;
+    margin: 6px 0;
+  }
+  .buttons {
+    margin-right: 20px;
+  }
+}
+  </style>
+{% include "footer.html" %}

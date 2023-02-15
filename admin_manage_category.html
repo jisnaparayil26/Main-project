@@ -1,0 +1,79 @@
+{% include 'adminheader.html'  %} 
+
+<div id="page-wrapper" >
+  <div id="page-inner">
+      <div class="row">
+          <div class="col-md-12">
+         
+          </div>
+      </div>              
+       <!-- /. ROW  -->
+        <hr />
+     
+
+
+<form method="post">
+    {% csrf_token %}
+    <center>
+        <h2 style="color: white">Category</h2>
+        {% if up %}
+        <table class="table"  style="width: 400px;color: black" border="4">
+            <tr>
+                <th>Category</th>
+                <td><input type="text" value={{up.category}} name="cat" class="form-control" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="submit" value="UPDATE" class="btn btn-danger"></td>
+            </tr>
+        </table>
+        {% else %}
+        <table class="table"  style="width: 400px;color: black" border="4">
+            <tr>
+                <th>Category</th>
+                <td><input type="text" name="cat" class="form-control" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="submit" value="ADD" class="btn btn-danger"></td>
+            </tr>
+        </table>
+
+        <h1>Category</h1>
+        <table class="table"  style="width: 400px;color: black" border="4">
+            <tr>
+                <th>SL.No</th>
+                <th>Category</th>
+            </tr>
+            {% for i in q %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.category}}</td>
+              
+                <td>
+                    <a class="btn btn-success" href="/admin_update_category/{{i.id}}">Update</a>
+                </td>
+                {% if i.cstatus == "active" %}
+                <td>
+                    <a class="btn btn-warning" href="/admin_category_inactive/{{i.id}}">INACTIVE</a>
+                </td>
+                {% elif i.cstatus == "inactive" %}
+                <td>
+                    <a class="btn btn-primary" href="/admin_category_active/{{i.id}}">ACTIVE</a>
+                </td>
+                {% else %}
+                <td>{{row.cstatus}}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </center>
+</form>
+
+       <!-- /. ROW  -->
+       <hr />                
+    
+     
+       <!-- /. ROW  -->           
+</div>
+   <!-- /. PAGE INNER  -->
+{% include 'admin_footer.html'  %} 

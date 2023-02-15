@@ -1,0 +1,74 @@
+{% include 'customer_header.html'  %} 
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height:200px">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);" style="height:200px">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown"><span>Delicious</span> Snacks</h2>
+                {% comment %} <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      
+      </div>
+    </div>
+  </section><!-- End Hero -->
+ <!-- ======= Chefs Section ======= -->
+ <section id="chefs" class="chefs">
+    <div class="container">
+      <form method="post">
+        {% csrf_token %}
+      <center>
+        <table class="table" style="width:500px">
+            <tr>
+                <th> 
+                    <input  type="search"  class="form-control"  name="pla" placeholder="Search By Product"></th>
+                <td><input type="submit" class="btn btn-success"  name="ser" value="SEARCH">
+                </td>
+            </tr>
+        </table>
+    </center>
+      </form>
+      <div class="section-title">
+        <h2>Our  <span>Snacks</span></h2>
+        {% comment %} <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p> {% endcomment %}
+      </div>
+
+      <div class="row">
+        {% for i in q %}
+        <div class="col-lg-4 col-md-6">
+          <div class="member">
+            <div class="pic"><img src="/static/uploads/{{i.image}}" class="img-fluid" alt=""></div>
+            <div class="member-info">
+              <h4>{{i.product_name}}</h4>
+              <span>{{i.rate}} /-</span>
+              {% if i.quantity == "0" %}
+              <span><a href="" class="btn btn-warning">OUT OF STOCK</a></span>
+             {% else %}
+              {% comment %} <span><a href="/customer_add_product_to_carts/{{i.id}}/{{i.product_name}}/{{i.rate}}/{{i.quantity}}/{{i.seller_id}}" class="btn btn-danger">ADD TO CART</a></span> {% endcomment %}
+
+              <span><a href="/customer_view_product_description/{{i.id}}" class="btn btn-danger">MORE DETAILS</a></span>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </section><!-- End Chefs Section -->
+  {% include 'footer.html'  %} 

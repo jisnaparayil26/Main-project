@@ -1,0 +1,72 @@
+{% include "seller_header.html" %}
+
+
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+           
+            </div>
+        </div>              
+         <!-- /. ROW  -->
+          <hr />          
+                
+  
+      <center>
+
+<h1>Bulk Request</h1>
+  <table class="table" style="width: 1000px;">
+    <tr>
+        <th>SL.NO</th>
+        <th>Customer</th>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Rate</th>
+        <th>Total</th>
+        <th>Date</th>
+    </tr>
+        {% for i in q %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.customer.fname}} {{i.customer.lname}}</td>
+        <td><img src="/static/uploads/{{i.product.image}}" height="100" width="100" alt="" /></td>
+        <td>{{i.product.product_name}}</td>
+        <td>{{i.quantity}}</td>
+        <td>{{i.product.rate}}</td>
+        <td>{{i.total}}</td>
+        <td>{{i.date}}</td>
+
+        {% if i.status == "pending" %}
+        <td>
+            <a class="btn btn-warning" href="/seller_accept_bulk_order/{{i.id}}">Accept</a>
+            <a class="btn btn-danger" href="/seller_reject_bulk_order/{{i.id}}">Reject</a>
+        </td>
+        {% elif i.status == "Accepted" or i.status == "Paid" %}
+       
+        <td>
+            <a class="btn btn-success" href="/seller_view_bulk_payments/{{i.id}}">View Payment</a>
+
+           
+        </td>
+        {% else %}
+        <td>{{row.status}}</td>
+        {% endif %}
+
+    </tr>
+        {% endfor %}
+    <tr>
+     
+</table>
+
+</center>
+
+<!-- /. ROW  -->
+<hr />                
+  
+   
+<!-- /. ROW  -->           
+</div>
+<!-- /. PAGE INNER  -->
+
+{% include "admin_footer.html" %}

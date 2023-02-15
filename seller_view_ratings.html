@@ -1,0 +1,57 @@
+{% include "seller_header.html" %}
+
+  
+<div id="page-wrapper" >
+  <div id="page-inner">
+      <div class="row">
+          <div class="col-md-12">
+         
+          </div>
+      </div>              
+       <!-- /. ROW  -->
+        <hr />          
+              
+
+
+
+  <center>
+    {% if q %}
+    <h1>Reviews</h1>
+<table class="table" style="width: 800px;">
+    <tr>
+        <th>SL.NO</th>
+        <th>Product</th>
+        <th>Image</th>
+        <th>Rate</th>
+        <th>Review</th>
+        <th>Date</th>
+    </tr>
+        {% for row in q %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{row.product.product_name}} </td>
+        <td><img src="/static/uploads/{{row.product.image}}" height="100" width="100"></td>
+        <td>{{row.rate}}</td>
+        <td>{{row.reviews}}</td>
+        <td>{{row.date}}</td>
+       
+    </tr>
+        {% endfor %}
+</table>
+{% else %}
+<br><br>
+<h2>NO DATA</h2>
+
+<br><br><br><br>
+{% endif %}
+</center>
+
+
+  <!-- /. ROW  -->
+  <hr />                
+    
+     
+  <!-- /. ROW  -->           
+</div>
+<!-- /. PAGE INNER  -->
+{% include "admin_footer.html" %}

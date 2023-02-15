@@ -1,0 +1,53 @@
+{% include 'public_header.html'  %} 
+
+  <!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/ss.jpg);">
+            <div class="carousel-container">
+              <div class="carousel-content">
+             
+              
+            
+  
+                    <form method="post">
+                        {% csrf_token %}
+                        <center>
+                            <h2 style="color: white">LOGIN</h2>
+                            <table class="table" style="width: 500px;color: white;font-size:25px">
+                                <tr>
+                                    <th style="color:white">Username</th>
+                                    <td><input type="text" name="uname" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                    <th style="color:white">Password</th>
+                                    <td><input type="password" name="pwd" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                  <td><a href="/forgot_password" style="color: red;">Forgot Password</a></td>
+                                    <td colspan="2" align="center"><input type="submit" name="submit" value="LOGIN" class="btn btn-danger"></td>
+                                </tr>
+                            </table>
+                        </center>
+                    </form>
+    
+
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    
+    </div>
+  </div>
+</section><!-- End Hero -->
+
+{% include 'footer.html'  %} 

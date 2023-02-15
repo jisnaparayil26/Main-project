@@ -1,0 +1,118 @@
+{% include 'public_header.html'  %} 
+<!-- ======= Hero Section ======= -->
+<script>
+    
+  (function(d, m){
+      var kommunicateSettings = 
+          {"appId":"6b21a565485ceef70f65aae13a4120b0","popupWidget":true,"automaticChatOpenOnNavigation":true};
+      var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+      s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+      var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+      window.kommunicate = m; m._globals = kommunicateSettings;
+  })(document, window.kommunicate || {});
+/* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
+
+</script>
+<section id="hero">
+        <div class="hero-container">
+          <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+    
+            <div class="carousel-inner" role="listbox">
+    
+              <!-- Slide 1 -->
+              <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);">
+                <div class="carousel-container">
+                  <div class="carousel-content">
+                    <h2 class="animate__animated animate__fadeInDown"><span>EatNow</span> Snacks</h2>
+                    {% comment %} <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                    <div>
+                      <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                      <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a> {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- Slide 2 -->
+              <div class="carousel-item" style="background-image: url(/static/assets/img/slide/t.jpg);">
+                <div class="carousel-container">
+                  <div class="carousel-content">
+                        <h2 class="animate__animated animate__fadeInDown"><span>EatNow</span> Snacks</h2>
+                    {% comment %} <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                    <div>
+                      <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                      <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a> {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              
+              
+    
+            </div>
+    
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+    
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+    
+          </div>
+        </div>
+      </section><!-- End Hero -->
+
+
+
+      <!-- ======= Chefs Section ======= -->
+ <section id="chefs" class="chefs">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Our  <span>Snacks</span></h2>
+
+      <form method="post">
+        {% csrf_token %}
+        <center>
+            <table class="table" style="width:500px">
+                <tr>
+                    <th> 
+                        <input  type="search"  class="form-control"  name="pla" placeholder="Search By Product"></th>
+                    <td><input type="submit" class="btn btn-success"  name="ser" value="SEARCH">
+                    </td>
+                </tr>
+            </table>
+        </center>
+      </form>
+
+      {% comment %} <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p> {% endcomment %}
+    </div>
+
+    <div class="row">
+      {% for i in q %}
+      <div class="col-lg-4 col-md-6">
+        <div class="member">
+          <div class="pic"><img src="/static/uploads/{{i.image}}" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>{{i.product_name}}</h4>
+            <span>{{i.rate}} /-</span>
+            {% if i.quantity == "0" %}
+            <span><a href="" class="btn btn-warning">OUT OF STOCK</a></span>
+           {% else %}
+            <span><a href="/loginss" class="btn btn-danger">ADD TO CART</a></span>
+          {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section><!-- End Chefs Section -->
+    
+     
+{% include 'footer.html'  %} 

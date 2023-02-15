@@ -1,0 +1,55 @@
+{% include "customer_header.html" %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height:400px">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);" style="height:400px">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown"><span>Delicious</span> Snacks</h2>
+                {% comment %} <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+    <center>
+        {% if q %}
+        <h1>Payment</h1>
+    <table class="table" style="width: 800px;">
+        <tr>
+            <th>SL.NO</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+            {% for row in q %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{row.amount}}</td>
+            <td>{{row.pdate}}</td>
+        </tr>
+            {% endfor %}
+    </table>
+    {% else %}
+    <br><br>
+    <h2>NO DATA</h2>
+    <li><a class="btn btn-success" href="/customer_view_product">ADD PRODUCTS</a></li>
+    <br><br><br><br>
+    {% endif %}
+</center>
+{% include "footer.html" %}

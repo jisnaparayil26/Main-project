@@ -1,0 +1,41 @@
+{% include "adminheader.html" %}
+<div id="page-wrapper" >
+  <div id="page-inner">
+      <div class="row">
+          <div class="col-md-12">
+           
+          </div>
+      </div>              
+       <!-- /. ROW  -->
+        <hr />
+     
+
+    <center>
+        <h1>Seller</h1>
+    <table class="table" style="width: 800px;" border="4">
+        <tr>
+            <th>SL.NO</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Rate</th>
+        </tr>
+            {% for i in q %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.product_name}}</td>
+            <td><img src="/static/uploads/{{i.image}}" height="150" width="150"></td>
+            <td>{{i.quantity}}</td>
+            <td>{{i.rate}}</td>
+        </tr>
+            {% endfor %}
+    </table>
+</center>
+       <!-- /. ROW  -->
+       <hr />                
+    
+     
+       <!-- /. ROW  -->           
+</div>
+   <!-- /. PAGE INNER  -->
+{% include 'admin_footer.html'  %} 

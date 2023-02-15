@@ -1,0 +1,68 @@
+{% include 'seller_header.html'  %} 
+
+  <!-- ======= Hero Section ======= -->
+<section id="hero" style="height:200px">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/ss.jpg);" style="height:200px">
+            <div class="carousel-container">
+              <div class="carousel-content">
+             
+              
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+</div>
+</div>
+</section><!-- End Hero -->
+            <center>
+  
+                    <form method="post">
+                        {% csrf_token %}
+		<h1>chat</h1>
+		<table class="table" style="width:300px">
+			<tr>
+				<th>Message</th>
+				<td><input type="text" name="msg" class="form-control">
+				<input type="submit" value="SEND" class="btn btn-success" name="send"></td>
+			</tr>
+		</table>
+	</form>
+</center>
+
+<center>
+    <br>
+    <h2>Message</h2>
+    <table class="table" style="width: 600px">
+        
+        {% for row in q %} 
+        <tr>
+         {% if row.sender_id == s_lid %} 
+        <td><input  type="text" name=""   class="form-control"></td>
+            <td><input type="text" name=""   class="form-control" value={{row.message}}>
+            </td>
+        {% else %} 
+        
+            <td><input type="text" name=""   value={{row.message}}  class="form-control" >
+            </td>
+            <td><input  type="text"   class="form-control" name=""></td>
+        {% endif %}
+        </tr>
+        {% endfor %} 
+    </table>
+
+
+
+</center>
+
+{% include 'footer.html'  %} 

@@ -1,0 +1,78 @@
+{% include 'customer_header.html'  %} 
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height:200px">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);" style="height:200px">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown"><span>Delicious</span> Snacks</h2>
+                {% comment %} <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+
+
+
+     <!-- ======= Events Section ======= -->
+     <section id="events" class="events">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Product<span> Description</span></h2>
+          </div>
+          {% for i in q %}
+          <div class="events-slider swiper">
+            <div class="swiper-wrapper">
+                
+              <div class="swiper-slide">
+                <div class="row event-item">
+                  <div class="col-lg-6">
+                    <img style="border-radius: 30px;" src="/static/uploads/{{i.image}}" class="img-fluid" alt="" height="400" width="400">
+                  </div>
+                  <div class="col-lg-6 pt-4 pt-lg-0 content">
+                    <h3>Name :{{i.product_name}}</h3>
+                    <div class="price">
+                      <p>Rate :{{i.rate}}/-</p>
+                    </div>
+                    Kg - 0.50<br>
+                    <br><p class="fst-italic">Description :
+                      {{i.p_description}}
+                    </p>
+                    {% if i.quantity == "0" %}
+              <span><a href="" class="btn btn-warning">OUT OF STOCK</a></span>
+             {% else %}
+             <span><a href="/customer_add_product_to_carts/{{i.id}}/{{i.product_name}}/{{i.rate}}/{{i.quantity}}/{{i.seller_id}}" class="btn btn-danger">ADD TO CART</a></span> 
+
+             <span><a href="/customer_request_for_bulk_request/{{i.id}}/{{i.product_name}}/{{i.rate}}/{{i.quantity}}/{{i.seller_id}}" class="btn btn-warning">Bulk Request</a></span> 
+
+              {% comment %} <span><a href="/customer_view_product_description/{{i.id}}" class="btn btn-danger">MORE DETAILS</a></span> {% endcomment %}
+            {% endif %}
+                  </div>
+                </div>
+              </div><!-- End testimonial item -->
+  
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+  {% endfor %}
+        </div>
+      </section><!-- End Events Section -->
+  {% include 'footer.html'  %} 
