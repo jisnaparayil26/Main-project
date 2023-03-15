@@ -38,6 +38,7 @@
         <th>Rate</th>
         <th>Total</th>
         <th>Date</th>
+        <th>Status</th>
     </tr>
         {% for i in q %}
     <tr>
@@ -48,9 +49,11 @@
         <td>{{i.product.rate}}</td>
         <td>{{i.total}}</td>
         <td>{{i.date}}</td>
+        <td>{{i.status}}</td>
         {% if i.status == "Accepted" %}
         <td><a class="btn btn-danger" href="/customer_bulk_payment/{{i.id}}/{{i.total}}" >Make Payment</a></h2></span></center></td>
         {% endif %}
+        
     </tr>
         {% endfor %}
 
