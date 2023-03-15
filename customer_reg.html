@@ -1,9 +1,23 @@
 {% include 'public_header.html'  %} 
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="jquery-3.2.1.min.js"></script>
+<script src="/static/validation.js"></script> 
+
+<script
+src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+crossorigin="anonymous"
+></script>
+<script src="js2\bootstrap.js"></script>
+
 <!-- ======= Hero Section ======= -->
-<section id="hero" style="height: 1000px;">
-    <div class="hero-container" style="height: 1000px;">
-      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel" style="height: 1000px;">
+<section id="hero" style="height: 1200px;">
+    <div class="hero-container" style="height: 1200px;">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel" style="height: 1200px;">
 
 
         <div class="carousel-inner" role="listbox" style="height: 1000px;">
@@ -78,16 +92,34 @@
     </script>
     {% csrf_token %}
     <center>
-        <br><br><br><br> <br><br><br><br>
+        <br><br><br><br> <br>
         <h3 style="color: white">Customer Registration</h3>
         <table class="table" style="width: 500px;color: white">
             <tr>
                 <th>First Name</th>
-                <td><input type="text" style="text-transform:capitalize;" name="fn" class="form-control" required></td>
+                <td><input type="text" id="form_fname" style="text-transform:capitalize;" name="fn" class="form-control" required>
+                    <span class="error_form" id="fname_error_message" style="color:red; font-size :13px; "></span></td>
             </tr>
             <tr>
                 <th>Last Name</th>
-                <td><input type="text" style="text-transform:capitalize;" name="ln" class="form-control" required></td>
+                <td><input type="text"  id="form_sname" style="text-transform:capitalize;" name="ln" class="form-control" required>
+                    <span class="error_form" id="sname_error_message" style="color:red; font-size :13px; "></span></td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td><input type="text" value="Kerala" style="text-transform:capitalize;" name="st" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td><input type="text" style="text-transform:capitalize;" name="dis" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td><input type="text" style="text-transform:capitalize;" name="city" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td><textarea name="add" id="" cols="80" required class="form-control" rows="5"></textarea></td>
             </tr>
             <tr>
                 <th>Place</th>
@@ -95,27 +127,29 @@
             </tr>
             <tr>
                 <th>Phone</th>
-                <td><input type="text"  pattern="[6-9]{1}[0-9]{9}"  minlength="10" maxlength="10" name="ph" class="form-control" required></td>
+                <td><input type="text" id="form_phone"  pattern="[6-9]{1}[0-9]{9}"  minlength="10" maxlength="10" name="ph" class="form-control" required>
+                    <span class="error_form" id="phone_error_message" style="color:red; font-size :13px; "></span></td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td><input type="email" name="em" class="form-control" required></td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td><input type="text" name="uname" class="form-control" required></td>
+                <td><input type="email" id="form_email" name="em" class="form-control" required>
+                    <span class="error_form" id="email_error_message"  style="color:red; font-size :13px; "></span></td>
             </tr>
             <tr>
                 <th>Password</th>
-                <td><input type="password" name="pwd" id="password"  onkeyup='check();'  class="form-control" required></td>
+                <td><input type="password" name="pwd" id="form_password"
+                    title="Must contain at least one number and one
+                 uppercase and lowercase letter, and at least 8 or more characters"  class="form-control" required>
+                 <span class="error_form" id="password_error_message"  style="color:red; font-size :13px; "></span></td>
             </tr>
             <tr>
                 <th>Confirm Password</th>
-                <td><input type="password" name="cpwd"  id="confirm_password"  onkeyup='check();' required class="form-control"></td>
-                <td><span id='message'></span></td>
+                <td><input type="password" name="cpwd"  id="form_retype_password"
+                    placeholder="confirm password" required class="form-control"  onclick="myyyFunction();"id="togglePassword" style="cursor: pointer; margin-left: -30px; color: black;" required class="form-control">
+                    <span class="error_form" id="retype_password_error_message"  style="color:red; font-size :13px; "></span></td>
             </tr>   
             <tr>
-                <td colspan="2" align="center"><input type="submit" name="submit" value="LOGIN" class="btn btn-danger"></td>
+                <td colspan="2" align="center"><input type="submit" name="submit" value="REGISTER" class="btn btn-danger"></td>
             </tr>
         </table>
     </center>
