@@ -32,10 +32,7 @@
             <td>{{row.total}}</td>
             <td>{{row.date}}</td>
             <td><a class="btn btn-primary" href="/admin_view_cart_product/{{row.id}}">Product Details</a></td>
-            <td>{{row.status}}</td>
-            {% if row.status == "Paid" %}
-            <td><a class="btn btn-danger" href="/admin_view_payments/{{row.id}}">Payments</a></td> 
-   {% endif %}
+           
            
         </tr>
             {% endfor %}
