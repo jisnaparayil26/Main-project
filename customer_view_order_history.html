@@ -48,9 +48,11 @@
             <td>{{row.seller.email}}</td>
             <td>{{row.total}}</td>
             <td>{{row.date}}</td>
+            <td>{{row.status}}</td>
             <td><a class="btn btn-primary" href="/customer_view_cart_history_product/{{row.id}}">Product Details</a></td>
-            {% if row.status == "Paid" %}
-            <td><a class="btn btn-info" href="/customer_view_payment_details/{{row.id}}">View Payments</a></td>
+            {% if row.status == "Shipped" %}
+          
+            <!-- <td><a class="btn btn-info" href="/customer_view_payment_details/{{row.id}}">View Payments</a></td> -->
 
             <td><a class="btn btn-danger" href="/generate_payment_invoice/{{row.id}}">Generate Invoice</a></td>
    {% endif %}
