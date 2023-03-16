@@ -11,8 +11,20 @@
      
 
     <center>
+
+        <form method="post">
+            {% csrf_token %}
+          <table>
+            <tr>
+              <td><input type="text" class="form-control" placeholder="search here....." name="product"></td>
+              <td><input type="submit" class="btn btn-success" name="search"></td>
+            </tr>
+          </table>
+        </form>
+
+
         <h1>Seller</h1>
-    <table class="table" style="width: 800px;" border="4">
+    <table class="table" style="width: 900px;" border="1">
         <tr>
             <th>SL.NO</th>
             <th>Name</th>
@@ -28,7 +40,7 @@
             <td>{{row.place}}</td>
             <td>{{row.phone}}</td>
             <td>{{row.email}}</td>
-            <td><img src="/static/uploads/{{row.license_no}}" height="100" width="100"></td>
+            <td><a href="/static/uploads/{{row.license_no}}"><img src="/static/uploads/{{row.license_no}}" height="100" width="100"></a></td>
             {% if row.login.usertype == "pending" %}
             <td>
                 <a class="btn btn-primary" href="/admin_accept_seller/{{row.login_id}}">Accept</a>
