@@ -1,0 +1,62 @@
+{% include "customer_header.html" %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height:400px">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);" style="height:400px">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown"><span>EatNow</span> Snacks</h2>
+                {% comment %} <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      
+      </div>
+    </div>
+  </section><!-- End Hero -->
+  <div class="container">
+    <div class="row">
+      {% if cc %}
+      <h1 class="m-5">Rating & Reviews</h1>
+      {% for row in cc %}
+      <div class="col-sm-4 card shadow m-2 p-3">
+
+        <div style="min-height: 50px;min-width: 50px;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+          <h4>Name: {{row.customer.fname}} {{row.customer.lname}}</h4>
+          <h6>Email: {{row.customer.email}}</h6>
+          <h6>Phone: {{row.customer.phone}}</h6>
+          <h6>Review: {{row.reviews}}</h6>
+          <h6>Rate: {{row.rate}}</h6>
+          <h6>Date: {{row.date}}</h6>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="col-sm-12 ">
+
+
+        <br><br>
+        <h2>NO DATA</h2>
+        <br><br><br><br>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+
+   
+</center>
+{% include "footer.html" %}

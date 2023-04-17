@@ -1,0 +1,93 @@
+{% include 'customer_header.html'  %} 
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height:200px">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);" style="height:200px">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown"><span>Delicious</span> Snacks</h2>
+                {% comment %} <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+
+    <center>
+        <form method="post">
+        {% csrf_token %}
+        <br><br><br>
+        <table class="table" style="width: 400px;">
+            <tr>
+                <th><input type="radio" name="pro" value="All Products">All Products</th>
+                <th><input type="radio" name="pro" value="Product Based On Rating">Based On Rating</th>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" class="btn btn-info" name="search" value="Search"></td>
+            </tr>
+        </table>
+            {% if rr %}
+
+
+            <h1>Products</h1>
+            <table class="table" style="width: 900px;" border="1">
+                <tr>
+                    <th>SL.NO</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                </tr>
+                    {% for i in rr %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.product_name}}</td>
+                    <td><a href="/static/uploads/{{i.image}}"><img src="/static/uploads/{{i.image}}" height="150" width="150"></a></td>
+                    <td>{{i.quantity}}</td>
+                    <td>{{i.rate}}</td>
+
+                </tr>
+                    {% endfor %}
+            </table>    
+
+
+            {% else %}
+        <h1>Products</h1>
+    <table class="table" style="width: 900px;" border="1">
+        <tr>
+            <th>SL.NO</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Rate</th>
+        </tr>
+            {% for i in cc %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.product_name}}</td>
+            <td><a href="/static/uploads/{{i.image}}"><img src="/static/uploads/{{i.image}}" height="150" width="150"></a></td>
+            <td>{{i.quantity}}</td>
+            <td>{{i.rate}}</td>
+        </tr>
+            {% endfor %}
+    </table>
+    {% endif %}
+</form>
+</center>
+{% include "footer.html" %}

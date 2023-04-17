@@ -1,0 +1,59 @@
+{% include "adminheader.html" %}
+<div id="page-wrapper" >
+  <div id="page-inner">
+      <div class="row">
+          <div class="col-md-12">
+           
+          </div>
+      </div>              
+       <!-- /. ROW  -->
+        <hr />
+     
+
+    <center>
+
+       
+
+
+        <h2>Registered Users</h2>
+       
+        <canvas id="user-doctor-chart" class="my-4 w-100" style="width:900px;max-width:400px;height:250px"></canvas>
+    <script>
+        var ctx = document.getElementById('user-doctor-chart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Total Customer', 'Total Seller', 'Total Deliveryboy'],
+                datasets: [{
+                    label: 'Total Customers , Sellers , Deliveryboy ',
+                    data: [{{ num_users }}, {{ scount }}, {{ dcount }}],
+                    backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)' ,'rgba(50, 200, 150, 0.2)', 'rgba(84, 120, 200, 0.2)'],
+                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)' ,'rgba(60, 180, 200, 1)', 'rgba(250, 100, 10, 1)'],
+                    
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <form>
+            <br>
+    
+      
+</center>
+       <!-- /. ROW  -->
+       <hr />                
+    
+     
+       <!-- /. ROW  -->           
+</div>
+   <!-- /. PAGE INNER  -->
+{% include 'admin_footer.html'  %} 
